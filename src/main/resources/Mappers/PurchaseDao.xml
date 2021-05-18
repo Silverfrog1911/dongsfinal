@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dongs.dongsfinal.mapper.PurchaseDao">
+  <resultMap id="BaseResultMap" type="com.dongs.dongsfinal.model.Purchase">
+    <id column="purchase_id" jdbcType="INTEGER" property="purchaseId" />
+    <result column="good_name" jdbcType="VARCHAR" property="goodName" />
+    <result column="purchase_status" jdbcType="VARCHAR" property="purchaseStatus" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="should_receive_amount" jdbcType="INTEGER" property="shouldReceiveAmount" />
+    <result column="SKU" jdbcType="VARCHAR" property="sku" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    purchase_id, good_name, purchase_status, receiver, should_receive_amount, SKU
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase
+    where purchase_id = #{purchaseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from purchase
+    where purchase_id = #{purchaseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="purchase_id" keyProperty="purchaseId" parameterType="com.dongs.dongsfinal.model.Purchase" useGeneratedKeys="true">
+    insert into purchase (good_name, purchase_status, receiver, 
+      should_receive_amount, SKU)
+    values (#{goodName,jdbcType=VARCHAR}, #{purchaseStatus,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, 
+      #{shouldReceiveAmount,jdbcType=INTEGER}, #{sku,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="purchase_id" keyProperty="purchaseId" parameterType="com.dongs.dongsfinal.model.Purchase" useGeneratedKeys="true">
+    insert into purchase
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodName != null">
+        good_name,
+      </if>
+      <if test="purchaseStatus != null">
+        purchase_status,
+      </if>
+      <if test="receiver != null">
+        receiver,
+      </if>
+      <if test="shouldReceiveAmount != null">
+        should_receive_amount,
+      </if>
+      <if test="sku != null">
+        SKU,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodName != null">
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseStatus != null">
+        #{purchaseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver != null">
+        #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="shouldReceiveAmount != null">
+        #{shouldReceiveAmount,jdbcType=INTEGER},
+      </if>
+      <if test="sku != null">
+        #{sku,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dongs.dongsfinal.model.Purchase">
+    update purchase
+    <set>
+      <if test="goodName != null">
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseStatus != null">
+        purchase_status = #{purchaseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver != null">
+        receiver = #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="shouldReceiveAmount != null">
+        should_receive_amount = #{shouldReceiveAmount,jdbcType=INTEGER},
+      </if>
+      <if test="sku != null">
+        SKU = #{sku,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where purchase_id = #{purchaseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dongs.dongsfinal.model.Purchase">
+    update purchase
+    set good_name = #{goodName,jdbcType=VARCHAR},
+      purchase_status = #{purchaseStatus,jdbcType=VARCHAR},
+      receiver = #{receiver,jdbcType=VARCHAR},
+      should_receive_amount = #{shouldReceiveAmount,jdbcType=INTEGER},
+      SKU = #{sku,jdbcType=VARCHAR}
+    where purchase_id = #{purchaseId,jdbcType=INTEGER}
+  </update>
+</mapper>

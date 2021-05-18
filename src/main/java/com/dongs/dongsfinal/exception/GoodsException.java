@@ -2,7 +2,7 @@ package com.dongs.dongsfinal.exception;
 
 
 
-import com.xd.finaldesign.enums.ExceptionCodeEnums;
+import com.dongs.dongsfinal.enums.ExceptionCodeEnums;
 import lombok.Data;
 
 @Data

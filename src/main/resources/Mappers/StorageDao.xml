@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dongs.dongsfinal.mapper.StorageDao">
+  <resultMap id="BaseResultMap" type="com.dongs.dongsfinal.model.Storage">
+    <id column="good_id" jdbcType="INTEGER" property="goodId" />
+    <result column="good_amount" jdbcType="INTEGER" property="goodAmount" />
+    <result column="good_name" jdbcType="VARCHAR" property="goodName" />
+    <result column="SKU" jdbcType="VARCHAR" property="sku" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    good_id, good_amount, good_name, SKU
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from storage
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from storage
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="good_id" keyProperty="goodId" parameterType="com.dongs.dongsfinal.model.Storage" useGeneratedKeys="true">
+    insert into storage (good_amount, good_name, SKU
+      )
+    values (#{goodAmount,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, #{sku,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="good_id" keyProperty="goodId" parameterType="com.dongs.dongsfinal.model.Storage" useGeneratedKeys="true">
+    insert into storage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodAmount != null">
+        good_amount,
+      </if>
+      <if test="goodName != null">
+        good_name,
+      </if>
+      <if test="sku != null">
+        SKU,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodAmount != null">
+        #{goodAmount,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null">
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="sku != null">
+        #{sku,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dongs.dongsfinal.model.Storage">
+    update storage
+    <set>
+      <if test="goodAmount != null">
+        good_amount = #{goodAmount,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null">
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="sku != null">
+        SKU = #{sku,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dongs.dongsfinal.model.Storage">
+    update storage
+    set good_amount = #{goodAmount,jdbcType=INTEGER},
+      good_name = #{goodName,jdbcType=VARCHAR},
+      SKU = #{sku,jdbcType=VARCHAR}
+    where good_id = #{goodId,jdbcType=INTEGER}
+  </update>
+</mapper>

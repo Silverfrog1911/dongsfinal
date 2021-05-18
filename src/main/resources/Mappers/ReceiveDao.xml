@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dongs.dongsfinal.mapper.ReceiveDao">
+  <resultMap id="BaseResultMap" type="com.dongs.dongsfinal.model.Receive">
+    <id column="receive_id" jdbcType="INTEGER" property="receiveId" />
+    <result column="good_id" jdbcType="INTEGER" property="goodId" />
+    <result column="purchase_id" jdbcType="INTEGER" property="purchaseId" />
+    <result column="real_receive_amount" jdbcType="INTEGER" property="realReceiveAmount" />
+    <result column="receive_date" jdbcType="TIMESTAMP" property="receiveDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    receive_id, good_id, purchase_id, real_receive_amount, receive_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from receive
+    where receive_id = #{receiveId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from receive
+    where receive_id = #{receiveId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="receive_id" keyProperty="receiveId" parameterType="com.dongs.dongsfinal.model.Receive" useGeneratedKeys="true">
+    insert into receive (good_id, purchase_id, real_receive_amount, 
+      receive_date)
+    values (#{goodId,jdbcType=INTEGER}, #{purchaseId,jdbcType=INTEGER}, #{realReceiveAmount,jdbcType=INTEGER}, 
+      #{receiveDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="receive_id" keyProperty="receiveId" parameterType="com.dongs.dongsfinal.model.Receive" useGeneratedKeys="true">
+    insert into receive
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodId != null">
+        good_id,
+      </if>
+      <if test="purchaseId != null">
+        purchase_id,
+      </if>
+      <if test="realReceiveAmount != null">
+        real_receive_amount,
+      </if>
+      <if test="receiveDate != null">
+        receive_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodId != null">
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseId != null">
+        #{purchaseId,jdbcType=INTEGER},
+      </if>
+      <if test="realReceiveAmount != null">
+        #{realReceiveAmount,jdbcType=INTEGER},
+      </if>
+      <if test="receiveDate != null">
+        #{receiveDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dongs.dongsfinal.model.Receive">
+    update receive
+    <set>
+      <if test="goodId != null">
+        good_id = #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseId != null">
+        purchase_id = #{purchaseId,jdbcType=INTEGER},
+      </if>
+      <if test="realReceiveAmount != null">
+        real_receive_amount = #{realReceiveAmount,jdbcType=INTEGER},
+      </if>
+      <if test="receiveDate != null">
+        receive_date = #{receiveDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where receive_id = #{receiveId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dongs.dongsfinal.model.Receive">
+    update receive
+    set good_id = #{goodId,jdbcType=INTEGER},
+      purchase_id = #{purchaseId,jdbcType=INTEGER},
+      real_receive_amount = #{realReceiveAmount,jdbcType=INTEGER},
+      receive_date = #{receiveDate,jdbcType=TIMESTAMP}
+    where receive_id = #{receiveId,jdbcType=INTEGER}
+  </update>
+</mapper>

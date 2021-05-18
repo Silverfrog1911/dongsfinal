@@ -84,4 +84,9 @@
       receive_date = #{receiveDate,jdbcType=TIMESTAMP}
     where receive_id = #{receiveId,jdbcType=INTEGER}
   </update>
+  <update id="updategoodIdBygoodName">
+    update receive
+    set good_id = #{goodId,jdbcType=INTEGER}
+    where purchase_id = #{purchaseId,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -16,6 +16,12 @@
     from storage
     where good_id = #{goodId,jdbcType=INTEGER}
   </select>
+  <select id="selectBygoodName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from storage
+    where good_name = #{goodName,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from storage
     where good_id = #{goodId,jdbcType=INTEGER}
@@ -72,5 +78,10 @@
       good_name = #{goodName,jdbcType=VARCHAR},
       SKU = #{sku,jdbcType=VARCHAR}
     where good_id = #{goodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateAmount">
+    update storage
+    set good_amount = #{goodAmount,jdbcType=INTEGER},
+    where good_name = #{goodName,jdbcType=VARCHAR}
   </update>
 </mapper>

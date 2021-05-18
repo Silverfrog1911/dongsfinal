@@ -18,9 +18,24 @@
     from purchase
     where purchase_id = #{purchaseId,jdbcType=INTEGER}
   </select>
+  <select id="selectBygoodName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from purchase
+    where good_name = #{goodName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from purchase
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from purchase
     where purchase_id = #{purchaseId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteBygoodName">
+    delete from purchase
+    where good_name = #{goodName,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="purchase_id" keyProperty="purchaseId" parameterType="com.dongs.dongsfinal.model.Purchase" useGeneratedKeys="true">
     insert into purchase (good_name, purchase_status, receiver, 
@@ -94,5 +109,20 @@
       should_receive_amount = #{shouldReceiveAmount,jdbcType=INTEGER},
       SKU = #{sku,jdbcType=VARCHAR}
     where purchase_id = #{purchaseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateStatus2WORK">
+    update purchase
+    set purchase_status = 'WORK'
+    where good_name = #{goodName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateStatus2CHECKING">
+    update purchase
+    set purchase_status = 'CHECKING'
+    where good_name = #{goodName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateStatus2RECEIVED">
+    update purchase
+    set purchase_status = 'CHECKING'
+    where good_name = #{goodName,jdbcType=VARCHAR}
   </update>
 </mapper>

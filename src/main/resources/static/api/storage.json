@@ -1,0 +1,43 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 4,
+  "data": [
+    {
+      "id" : 1,
+      "name" : "可口可乐",
+      "status" : "WAIT GRANT !",
+      "goodAmount" : 100,
+      "receiptsDate" : "",
+      "orderId" : "",
+      "shouldAmount" : 100
+    },
+    {
+      "id" : 2,
+      "name" : "可口可乐2",
+      "status" : "WAIT GRANT !",
+      "goodAmount" : 150,
+      "receiptsDate" : "",
+      "orderId" : "",
+      "shouldAmount" : 150
+    },
+    {
+      "id" : 3,
+      "name" : "可口可乐3",
+      "status" : "WAIT GRANT !",
+      "goodAmount" : 200,
+      "receiptsDate" : "",
+      "orderId" : "",
+      "shouldAmount" : 200
+    },
+    {
+      "id" : 4,
+      "name" : "可口可乐4",
+      "status" : "WAIT GRANT !",
+      "goodAmount" : 250,
+      "receiptsDate" : "",
+      "orderId" : "",
+      "shouldAmount" : 250
+    }
+  ]
+}

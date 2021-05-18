@@ -1,0 +1,59 @@
+{
+  "clearInfo": {
+    "clearUrl": "api/clear.json"
+  },
+  "homeInfo": {
+    "title": "首页",
+    "icon": "fa fa-home",
+    "href": "page/welcome-4.html?mpi=m-p-i-0"
+  },
+  "logoInfo": {
+    "title": "供应链管理",
+    "image": "images/logo.png",
+    "href": ""
+  },
+  "menuInfo": {
+    "currency": {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "child": [
+        {
+          "title": "收货授权",
+          "href": "page/table/ResGrantPriv.html",
+          "icon": "fa fa-home",
+          "target": "_self"
+        },
+        {
+          "title": "收货授权展示",
+          "href": "page/table/ResGrantPrivShow.html",
+          "icon": "fa fa-home",
+          "target": "_self"
+        },
+        {
+          "title": "收货验货",
+          "href": "page/table/GoodCheck.html",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "收货确认",
+          "href": "page/table/Confirm.html",
+          "icon": "fa fa-gears",
+          "target": "_self"
+        },
+        {
+          "title": "全部已收货品",
+          "href": "page/table/GoodReceived.html",
+          "icon": "fa fa-gears",
+          "target": "_self"
+        },
+        {
+          "title": "货位更新",
+          "href": "page/table/GoodAmountEdit.html",
+          "icon": "fa fa-file-text",
+          "target": "_self"
+        }
+      ]
+    }
+  }
+}

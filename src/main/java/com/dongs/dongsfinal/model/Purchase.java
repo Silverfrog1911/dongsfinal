@@ -23,6 +23,9 @@ public class Purchase implements Serializable {
 
     /**
      * 订单状态
+     * WORK
+     * CHECKING
+     * RECEIVED
      */
     private String purchaseStatus;
 

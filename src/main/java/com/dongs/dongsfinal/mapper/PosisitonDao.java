@@ -16,4 +16,7 @@ public interface PosisitonDao {
     int updateByPrimaryKeySelective(Posisiton record);
 
     int updateByPrimaryKey(Posisiton record);
+
+
+
 }

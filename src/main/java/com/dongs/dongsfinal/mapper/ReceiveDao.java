@@ -16,4 +16,9 @@ public interface ReceiveDao {
     int updateByPrimaryKeySelective(Receive record);
 
     int updateByPrimaryKey(Receive record);
+
+    void updategoodIdBygoodName(int purchaseId,int goodId);
+
+
+
 }

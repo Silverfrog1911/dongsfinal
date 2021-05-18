@@ -16,4 +16,11 @@ public interface StorageDao {
     int updateByPrimaryKeySelective(Storage record);
 
     int updateByPrimaryKey(Storage record);
+
+    Storage selectBygoodName(String goodName);
+
+    void updateAmount(String goodName,int goodAmount);
+
+
+
 }

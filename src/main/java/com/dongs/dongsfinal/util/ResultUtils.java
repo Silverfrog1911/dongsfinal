@@ -1,7 +1,7 @@
 package com.dongs.dongsfinal.util;
 
 
-import com.xd.finaldesign.enums.ResultCodeEnums;
+import com.dongs.dongsfinal.enums.ResultCodeEnums;
 
 public class ResultUtils {
 

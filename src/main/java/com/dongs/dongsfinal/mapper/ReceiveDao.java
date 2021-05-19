@@ -1,7 +1,10 @@
 package com.dongs.dongsfinal.mapper;
 
 import com.dongs.dongsfinal.model.Receive;
+import com.dongs.dongsfinal.model.poly.ReceiveShow;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface ReceiveDao {
@@ -19,6 +22,7 @@ public interface ReceiveDao {
 
     void updategoodIdBygoodName(int purchaseId,int goodId);
 
+    List<Receive> selectAll();
 
 
 }

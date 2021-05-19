@@ -5,6 +5,7 @@ import com.dongs.dongsfinal.mapper.PurchaseDao;
 import com.dongs.dongsfinal.mapper.ReceiveDao;
 import com.dongs.dongsfinal.mapper.StorageDao;
 import com.dongs.dongsfinal.model.Purchase;
+import com.dongs.dongsfinal.model.poly.PurchaseShow;
 import com.dongs.dongsfinal.service.pur.PurSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,13 @@ public class PurSerImpl implements PurSer {
         return 0;
     }
 
+    @Override
+    public List<PurchaseShow> selectbyStatus(String status) {
+        return purchaseDao.selectByStatus(status);
+    }
 
+    @Override
+    public Purchase selectById(int purchaseId) {
+        return purchaseDao.selectByPrimaryKey(purchaseId);
+    }
 }

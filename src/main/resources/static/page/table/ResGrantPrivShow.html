@@ -22,9 +22,10 @@
 
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
-        <!--     <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
-        </script>-->
+        <script type="text/html" id="currentTableBar">
+            <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event="yes">通过</button>
+            <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event="no">未通过</button>
+        </script>
 
     </div>
 </div>
@@ -39,8 +40,8 @@
 
         table.render({
             elem: '#currentTableId',
-            url: 'http://localhost:8080/receipts/selectWORK',
-            toolbar: '#toolbarDemo',
+            url: 'http://localhost:8080/Purchase/selectWork',
+            // toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
                 layEvent: 'LAYTABLE_TIPS',
@@ -48,14 +49,14 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50, fixed: "left"},
-                {field: 'id', width: 120, title: '收货单ID', sort: true},
-                {field: 'name', width: 120, title: '货物名称'},
-                {field: 'status', width: 120, title: '收货单状态'},
-                {field: 'goodAmount', width: 120, title: '货物数量'},
-                {field: 'receiptsDate', width: 120, title: '收货日期'},
-                {field: 'orderId', width: 120, title: '订货单ID', sort: true},
-                {field: 'shouldAmount', width: 120, title: '应收数量'},
-                {field: 'receiver', width: 120, title: '收货人'}
+                {field: 'purchaseId', width: 120, title: '订货单ID', sort: true},
+                {field: 'goodName', width: 120, title: '商品名'},
+                {field: 'sku', width: 120, title: '商品编号'},
+                {field: 'purchaseStatus', width: 120, title: '收货单状态'},
+                {field: 'shouldReceiveAmount', width: 120, title: '应收数量'},
+                {field: '', width: 120, title: '实收数量',templet:'<div>{{d.receive.realReceiveAmount}}</div>'},
+                {field: 'receiver', width: 120, title: '收货人'},
+                {title: '操作', Width: 100, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,
@@ -63,25 +64,62 @@
         });
 
 
-        // 监听添加操作
-        $(".data-add-btn").on("click", function () {
+        table.on("tool(currentTableFilter)",function(obj){
 
-            var index = layer.open({
-                title: '添加信息',
-                type: 2,
-                shade: 0.2,
-                maxmin:true,
-                shadeClose: true,
-                area: ['500px', '400px'],
-                content: '../../page/layer/good_info_add.html',
-            });
-            $(window).on("resize", function () {
-                layer.full(index);
-            });
+            var d=obj.data;
 
-            return false;
+
+            if(obj.event==="yes"){
+
+                $.ajax({
+                    // url:'http://localhost:8080/goods/insertWORKStatus',
+                    url:'http://localhost:8080/Purchase/updateCheckingBygoodName',
+                    method:'post',
+                    // contentType :'application/json',
+                    data:{
+                        goodName:d.goodName
+                    },
+                    // async: true,
+                    dataType:'JSON',
+                    success:function(res){
+                        if(res.code===0){
+                            layer.msg("操作成功");
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        console.log("----"+textStatus)
+                    }
+                }) ;
+
+                return false;
+            }
+            if(obj.event==="no"){
+
+                $.ajax({
+                    // url:'http://localhost:8080/goods/insertWORKStatus',
+                    url:'http://localhost:8080/Purchase/deleteBygoodName',
+                    method:'post',
+                    // contentType :'application/json',
+                    data:{
+                        goodName:d.goodName
+                    },
+                    // async: true,
+                    dataType:'JSON',
+                    success:function(res){
+                        if(res.code===0){
+                            layer.msg("操作成功");
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        console.log("----"+textStatus)
+                    }
+                }) ;
+
+                return false;
+            }
+
+
         });
-
     });
 </script>
 <script>

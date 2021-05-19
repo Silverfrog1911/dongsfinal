@@ -3,6 +3,8 @@ package com.dongs.dongsfinal.mapper;
 import com.dongs.dongsfinal.model.Posisiton;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface PosisitonDao {
     int deleteByPrimaryKey(Integer posId);
@@ -17,6 +19,6 @@ public interface PosisitonDao {
 
     int updateByPrimaryKey(Posisiton record);
 
-
+    List<Posisiton> selectAll();
 
 }

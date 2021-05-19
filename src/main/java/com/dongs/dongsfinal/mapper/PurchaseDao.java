@@ -1,6 +1,7 @@
 package com.dongs.dongsfinal.mapper;
 
 import com.dongs.dongsfinal.model.Purchase;
+import com.dongs.dongsfinal.model.poly.PurchaseShow;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -33,7 +34,11 @@ public interface PurchaseDao {
     Purchase selectBygoodName(String goodName);
 
 
+
+
     List<Purchase> selectAll();
+
+    List<PurchaseShow> selectByStatus(String status);
 
     int deleteBygoodName(String goodName);
 

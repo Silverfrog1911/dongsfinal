@@ -9,6 +9,23 @@
     <result column="should_receive_amount" jdbcType="INTEGER" property="shouldReceiveAmount" />
     <result column="SKU" jdbcType="VARCHAR" property="sku" />
   </resultMap>
+
+  <resultMap id="BaseResultMap2" type="com.dongs.dongsfinal.model.poly.PurchaseShow">
+    <id column="purchase_id" jdbcType="INTEGER" property="purchaseId" />
+    <result column="good_name" jdbcType="VARCHAR" property="goodName" />
+    <result column="purchase_status" jdbcType="VARCHAR" property="purchaseStatus" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="should_receive_amount" jdbcType="INTEGER" property="shouldReceiveAmount" />
+    <result column="SKU" jdbcType="VARCHAR" property="sku" />
+    <association property="receive" javaType="com.dongs.dongsfinal.model.Receive">
+      <id column="receive_id" jdbcType="INTEGER" property="receiveId" />
+      <result column="good_id" jdbcType="INTEGER" property="goodId" />
+      <result column="purchase_id" jdbcType="INTEGER" property="purchaseId" />
+      <result column="real_receive_amount" jdbcType="INTEGER" property="realReceiveAmount" />
+      <result column="receive_date" jdbcType="TIMESTAMP" property="receiveDate" />
+    </association>
+  </resultMap>
+
   <sql id="Base_Column_List">
     purchase_id, good_name, purchase_status, receiver, should_receive_amount, SKU
   </sql>
@@ -28,6 +45,11 @@
     select
     <include refid="Base_Column_List" />
     from purchase
+  </select>
+  <select id="selectByStatus" parameterType="java.lang.String" resultMap="BaseResultMap2">
+    select *
+    from purchase p left join receive r on p.purchase_id=r.purchase_id
+    where p.purchase_status=#{status}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from purchase
@@ -122,7 +144,7 @@
   </update>
   <update id="updateStatus2RECEIVED">
     update purchase
-    set purchase_status = 'CHECKING'
+    set purchase_status = 'RECEIVED'
     where good_name = #{goodName,jdbcType=VARCHAR}
   </update>
 </mapper>

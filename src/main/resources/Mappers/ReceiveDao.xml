@@ -17,15 +17,18 @@
     from receive
     where receive_id = #{receiveId,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from receive
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from receive
     where receive_id = #{receiveId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="receive_id" keyProperty="receiveId" parameterType="com.dongs.dongsfinal.model.Receive" useGeneratedKeys="true">
-    insert into receive (good_id, purchase_id, real_receive_amount, 
-      receive_date)
-    values (#{goodId,jdbcType=INTEGER}, #{purchaseId,jdbcType=INTEGER}, #{realReceiveAmount,jdbcType=INTEGER}, 
-      #{receiveDate,jdbcType=TIMESTAMP})
+    insert into receive (good_id, purchase_id, real_receive_amount)
+    values (#{goodId,jdbcType=INTEGER}, #{purchaseId,jdbcType=INTEGER}, #{realReceiveAmount,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="receive_id" keyProperty="receiveId" parameterType="com.dongs.dongsfinal.model.Receive" useGeneratedKeys="true">
     insert into receive

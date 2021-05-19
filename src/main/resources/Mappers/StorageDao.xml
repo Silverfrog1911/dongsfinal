@@ -22,7 +22,14 @@
     from storage
     where good_name = #{goodName,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectAll" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from storage where good_name in (
+        select good_name from purchase where purchase_status='RECEIVED'
+      )
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from storage
     where good_id = #{goodId,jdbcType=INTEGER}
   </delete>

@@ -15,6 +15,11 @@
     from posisiton
     where pos_id = #{posId,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from posisiton
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from posisiton
     where pos_id = #{posId,jdbcType=INTEGER}
@@ -60,4 +65,6 @@
       currentAmount = #{currentamount,jdbcType=INTEGER}
     where pos_id = #{posId,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

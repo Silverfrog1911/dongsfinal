@@ -9,6 +9,8 @@ import com.dongs.dongsfinal.service.receive.ReceiveSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReceiveSerImpl implements ReceiveSer {
     @Autowired
@@ -28,5 +30,15 @@ public class ReceiveSerImpl implements ReceiveSer {
     @Override
     public void updategoodIdBygoodName(int purchaseId, int goodId) {
         receiveDao.updategoodIdBygoodName(purchaseId,goodId);
+    }
+
+    @Override
+    public Receive selectById(int receiveId) {
+        return receiveDao.selectByPrimaryKey(receiveId);
+    }
+
+    @Override
+    public List<Receive> selectAll() {
+        return receiveDao.selectAll();
     }
 }

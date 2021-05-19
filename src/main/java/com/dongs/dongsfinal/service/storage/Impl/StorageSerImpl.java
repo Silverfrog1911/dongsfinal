@@ -9,6 +9,8 @@ import com.dongs.dongsfinal.service.storage.StorageSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StorageSerImpl implements StorageSer {
     @Autowired
@@ -33,5 +35,15 @@ public class StorageSerImpl implements StorageSer {
     @Override
     public void updateAmount(String goodName, int goodAmount) {
         storageDao.updateAmount(goodName,goodAmount);
+    }
+
+    @Override
+    public List<Storage> selectAll() {
+        return storageDao.selectAll();
+    }
+
+    @Override
+    public Storage selectById(int storageId) {
+        return storageDao.selectByPrimaryKey(storageId);
     }
 }

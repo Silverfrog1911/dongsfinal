@@ -3,6 +3,8 @@ package com.dongs.dongsfinal.mapper;
 import com.dongs.dongsfinal.model.Storage;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface StorageDao {
     int deleteByPrimaryKey(Integer goodId);
@@ -21,6 +23,6 @@ public interface StorageDao {
 
     void updateAmount(String goodName,int goodAmount);
 
-
+    List<Storage> selectAll();
 
 }
